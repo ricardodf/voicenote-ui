@@ -1,0 +1,111 @@
+.lp__container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  background-color: aqua;
+}
+
+/** NAVIGATION **/
+.lp__container .lp__nav {
+  height: fit-content;
+  background-color: #50d890;
+}
+
+.lp__nav .lp__nav-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 5em;
+}
+
+.lp__nav-main .lp__nav-img {
+  height: 32px;
+  width: 32px;
+}
+
+.lp__nav-main .lp__nav-title {
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+/** MAIN **/
+.lp__container .lp__main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/**     MAIN - LEFT SECTION **/
+.lp__main .lp__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+  background-color: black;
+}
+
+.lp__left .lp__text {
+  padding: 1em 2em 1em 1em;
+  font-size: 2.5em;
+  color: white;
+}
+
+.lp__left .lp__btn-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.lp__btn-group .lp__btn {
+  margin: 1em;
+  font-weight: bold;
+  border-radius: 20px;
+  border-color: #50d890;
+  background-color: #50d890;
+  color: black;
+}
+
+.lp__btn-group .lp__btn:hover {
+  border-color: black;
+  background-color: #47bf7f;
+  color: white;
+}
+
+.lp__btn-group .lp__division {
+  border-top: 1px solid lightgray;
+  opacity: 1 !important;
+}
+
+/**     MAIN - RIGHT SECTION **/
+.lp__main .lp__right {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 70%;
+  background-color: #5098d8;
+}
+
+.lp__right .lp__back-svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.lp__right .lp__front-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  height: 70%;
+  width: 70%;
+}
