@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "rollup -c",
+    "localbuild": "rollup -c",
     "lint": "eslint src/** --fix",
     "lint:fix": "prettier-eslint src/**/*.js --write",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "husky": {
     "hooks": {
