@@ -29,11 +29,14 @@ class LandingPage extends React.Component {
             </div>
           </div>
           <div className="lp__right">
-            <img
-              className="lp__bg-svg"
-              src="/images/topography.svg"
-              alt=""
-            ></img>
+            <img className="lp__back-svg" src="/images/topography.svg" alt="" />
+            <div className="lp__front-svg-container">
+              <img
+                className="lp__front-svg"
+                src="/images/front-img.svg"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </div>

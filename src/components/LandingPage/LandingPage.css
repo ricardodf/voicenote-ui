@@ -82,12 +82,30 @@
 
 /**     MAIN - RIGHT SECTION **/
 .lp__main .lp__right {
+  position: relative;
+  top: 0;
+  left: 0;
   width: 70%;
   background-color: #5098d8;
 }
 
-.lp__right .lp__bg-svg {
+.lp__right .lp__back-svg {
+  position: relative;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.lp__right .lp__front-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  height: 70%;
+  width: 70%;
 }
