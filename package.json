@@ -1,7 +1,7 @@
 {
   "name": "voicenote-ui",
   "version": "1.0.0",
-  "description": "VoiceNote UI Project",
+  "description": "CaaS Service for VoiceNote.io UI",
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
