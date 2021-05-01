@@ -1,4 +1,1 @@
-console
-  .log(
-    'holla' +
-    'sa')
+console.log('holla' + "world");
