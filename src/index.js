@@ -1,5 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
-const App = (props) => <h1>Title</h1>
-
-export default App
+ReactDOM.render(<App />, document.getElementById('root'))
