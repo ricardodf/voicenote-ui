@@ -24,7 +24,7 @@ class LandingPage extends React.Component {
                 alt=""
               />
               <Navbar.Brand className="lp__nav-title">
-                {LP.NAV_TITLE} PROD
+                {LP.NAV_TITLE} TESTING ECS
               </Navbar.Brand>
             </div>
           </Navbar>
