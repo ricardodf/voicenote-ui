@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::778902583760:role/ECS-VoiceNoteUI-TaskPolicy",
+  "executionRoleArn": null,
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "778902583760.dkr.ecr.us-east-1.amazonaws.com/voicenote-ui",
+      "image": "714744118839.dkr.ecr.us-east-1.amazonaws.com/voicenote-repo",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -46,17 +46,17 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "VoiceNoteUI"
+      "name": "VoiceNoteContainer"
     }
   ],
   "placementConstraints": [],
   "memory": "128",
-  "taskRoleArn": "arn:aws:iam::778902583760:role/ECS-VoiceNoteUI-TaskPolicy",
+  "taskRoleArn": "arn:aws:iam::714744118839:role/VoiceNote-ECSTaskRole",
   "compatibilities": [
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:778902583760:task-definition/VoiceNoteTask:1",
-  "family": "VoiceNoteTask",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:714744118839:task-definition/DeploymentContainer:1",
+  "family": "DeploymentContainer",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -69,12 +69,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
     }
   ],
   "pidMode": null,
