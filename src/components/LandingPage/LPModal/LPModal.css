@@ -1,3 +1,33 @@
 .lpm__header {
   background-color: #272727;
+  padding: 0;
+}
+
+.lpm__header .lpm__title {
+  padding: 1em;
+  color: white;
+}
+
+.lpm__header .lpm__footer-btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 1em;
+}
+
+.lpm__footer-btn-group .lpm__footer-btn {
+  margin: 0.5em;
+}
+
+.lpm__body {
+  background-color: #dfdfdf;
+  margin: 0;
+}
+
+.lpm__body .lpm__form {
+  padding: 1em;
+}
+
+.lpm__form .lpm__form-element {
+  padding: 1em 0.5em;
 }
