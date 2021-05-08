@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Button, Form } from 'react-bootstrap'
+import { LPMODAL } from './LPModalConsts'
 
 import './LPModal.css'
 
@@ -29,28 +30,36 @@ class LPModal extends React.Component {
                 className="lpm__title"
                 id="contained-modal-title-vcenter"
               >
-                {this.props.title}
+                {this.props.typeModal === 'SIGNUP'
+                  ? LPMODAL.SIGNUP
+                  : LPMODAL.LOGIN}
               </Modal.Title>
             </div>
           </Modal.Header>
           <Modal.Body className="lpm__body">
             <Form className="lpm__form">
-              <Form.Group
-                className="lpm__form-element"
-                controlId="formBasicEmail"
-              >
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" />
-              </Form.Group>
+              {this.props.typeModal === 'SIGNUP'
+                ? (
+                <>
+                  <Form.Group
+                    className="lpm__form-element"
+                    controlId="formName"
+                  >
+                    <Form.Label>{LPMODAL.NAME}</Form.Label>
+                    <Form.Control type="text" placeholder="Name" />
+                  </Form.Group>
+                </>
+                  )
+                : null}
               <Form.Group className="lpm__form-element" controlId="formEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>{LPMODAL.EMAIL}</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
               </Form.Group>
               <Form.Group
                 className="lpm__form-element"
                 controlId="formBasicPassword"
               >
-                <Form.Label>Password</Form.Label>
+                <Form.Label>{LPMODAL.PASSWORD}</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
             </Form>
@@ -63,14 +72,14 @@ class LPModal extends React.Component {
                   variant="secondary"
                   onClick={this.props.testfunc}
                 >
-                  Close
+                  {LPMODAL.CLOSE}
                 </Button>
                 <Button
                   className="lpm__footer-btn"
                   variant="success"
                   onClick={this.props.testfunc}
                 >
-                  Submit
+                  {LPMODAL.SUBMIT}
                 </Button>
               </div>
             </div>
@@ -83,7 +92,8 @@ class LPModal extends React.Component {
 
 LPModal.propTypes = {
   testfunc: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  typeModal: PropTypes.string.isRequired
 }
 
 export default LPModal

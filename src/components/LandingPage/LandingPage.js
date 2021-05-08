@@ -8,7 +8,8 @@ class LandingPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showSignUpModal: false
+      showSignUpModal: false,
+      typeModal: 'LOGIN'
     }
   }
 
@@ -34,12 +35,27 @@ class LandingPage extends React.Component {
               <div className="lp__btn-group">
                 <Button
                   className="lp__btn btn-account"
-                  onClick={() => this.setState({ showSignUpModal: true })}
+                  onClick={() =>
+                    this.setState({
+                      typeModal: 'SIGNUP',
+                      showSignUpModal: true
+                    })
+                  }
                 >
                   {LP.NEW_ACCOUNT}
                 </Button>
                 <hr className="lp__division" />
-                <Button className="lp__btn btn-login">{LP.LOG_IN}</Button>
+                <Button
+                  className="lp__btn btn-login"
+                  onClick={() =>
+                    this.setState({
+                      typeModal: 'LOGIN',
+                      showSignUpModal: true
+                    })
+                  }
+                >
+                  {LP.LOG_IN}
+                </Button>
               </div>
             </div>
             <div className="lp__right">
@@ -63,6 +79,7 @@ class LandingPage extends React.Component {
           onHide={() => this.setState({ showSignUpModal: false })}
           title="Sign Up"
           testfunc={() => this.setState({ showSignUpModal: false })}
+          typeModal={this.state.typeModal}
         />
       </>
     )
