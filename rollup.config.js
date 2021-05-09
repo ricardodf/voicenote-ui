@@ -11,6 +11,7 @@ export default {
     'react',
     'react-bootstrap',
     'react-dom',
+    'react-icons',
     'react-router-dom'
   ],
   output: [

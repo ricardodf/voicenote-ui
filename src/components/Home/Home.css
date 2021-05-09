@@ -1,4 +1,65 @@
 .hm__container {
+  display: flex;
+  flex-flow: column;
   height: 100%;
   background-color: lightgray;
+}
+
+/** NAVIGATION **/
+.hm__container .hm__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+  background-color: #ebebeb;
+  border-radius: 2px solid black;
+}
+
+.hm__nav .hm__nav-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 5em;
+}
+
+.hm__nav .hm__nav-logout {
+  padding-right: 5em;
+}
+
+.hm__nav-main .hm__nav-img {
+  height: 32px;
+  width: 32px;
+}
+
+.hm__nav-main .hm__nav-title {
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+/** MAIN **/
+.hm__container .hm__main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/**     MAIN - LEFT SECTION **/
+.hm__main .hm__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+  background-color: #ebebeb;
+}
+
+/**     MAIN - RIGHT SECTION **/
+.hm__main .hm__right {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 70%;
+  background-color: #f0f0f0;
 }
