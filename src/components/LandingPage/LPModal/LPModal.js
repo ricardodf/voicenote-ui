@@ -39,7 +39,7 @@ class LPModal extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.id) {
-          localStorage.setItem('user', JSON.stringify(data))
+          sessionStorage.setItem('user', JSON.stringify(data))
           this.props.history.push('/home')
         }
       })
@@ -61,7 +61,7 @@ class LPModal extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.id) {
-          localStorage.setItem('user', JSON.stringify(data))
+          sessionStorage.setItem('user', JSON.stringify(data))
           this.props.history.push('/home')
         }
       })
@@ -146,7 +146,6 @@ class LPModal extends React.Component {
                   variant="secondary"
                   onClick={(e) => {
                     e.preventDefault()
-                    console.log('here')
                     this.setState({
                       formName: '',
                       formEmail: '',

@@ -12,7 +12,7 @@
   justify-content: space-between;
   height: fit-content;
   background-color: #ebebeb;
-  border-radius: 2px solid black;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 
 .hm__nav .hm__nav-main {
@@ -55,6 +55,33 @@
   background-color: #ebebeb;
 }
 
+.hm__left .hm__left-container {
+  height: 100%;
+  margin: 3em 0 3em 0;
+  border-right: 1px solid rgb(191, 191, 191);
+}
+
+.hm__left-container .hm__left-item {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  margin: 0 2em 2em 2em;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.hm__left-container .hm__left-item:hover {
+  background-color: rgb(170, 170, 170);
+  cursor: pointer;
+}
+
+.hm__left-item .hm__left-item-text {
+  height: 30px;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  padding-left: 1em;
+}
+
 /**     MAIN - RIGHT SECTION **/
 .hm__main .hm__right {
   position: relative;
@@ -62,4 +89,89 @@
   left: 0;
   width: 70%;
   background-color: #f0f0f0;
+}
+
+.hm__right .hm__right-container {
+  height: 100%;
+  padding: 3em;
+}
+
+/** ALL NOTES **/
+.hm__right-menuView .hm__all-notes {
+  display: flex;
+  flex-direction: column;
+}
+
+.hm__menuView-title {
+  font-size: 28px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(191, 191, 191);
+  padding-bottom: 0.25em;
+}
+
+.hm__all-notes .hm__all-notes-main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%;
+  padding-top: 1.5em;
+}
+
+/** NEW NOTE **/
+.hm__right-menuView .hm__new-note {
+  display: flex;
+  flex-direction: column;
+}
+
+.hm__new-note .hm__form,
+.hm__new-note .hm__form-item,
+.hm__new-note .hm__form-btn {
+  padding: 1em;
+}
+
+.hm__new-note .hm__form-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.hm__new-note .hm__form-alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/** TRANSLATE **/
+.hm__right-menuView .hm__trans {
+  display: flex;
+  flex-direction: column;
+}
+
+.hm__trans .hm__trans-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+}
+
+.hm__trans .hm__trans-note {
+  margin: 1em 2em 1em 2em;
+}
+
+.hm__trans-note .hm__title {
+  font-size: 18px;
+  padding-bottom: 0.5em;
+}
+
+.hm__trans .hm__dropdown {
+  background-color: #5098d8;
+}
+
+.hm__trans .hm__trans-btn {
+  display: flex;
+  align-items: center;
+  margin: 0em 2em 0em 4em;
+}
+
+.hm__trans .hm__trans-btn-text {
+  font-size: 21px;
 }

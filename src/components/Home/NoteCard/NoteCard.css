@@ -1,0 +1,36 @@
+.nc__container {
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  width: 300px;
+  padding: 1em;
+  margin: 1em;
+  transition: background-color 0.5s ease-in-out;
+  transition: color 0.4s ease-in-out;
+}
+
+.nc__container:hover {
+  cursor: pointer;
+  background-color: #5098d8;
+  color: white;
+}
+
+.nc__container:focus {
+  background-color: #47bf7f;
+  color: white;
+}
+
+.nc__container .nc__title {
+  padding: 1em;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.nc__container .nc__preview {
+  padding: 1em;
+  overflow: hidden;
+  text-overflow: clip;
+}
