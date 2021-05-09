@@ -72,8 +72,8 @@ class Home extends React.Component {
       },
       body: JSON.stringify({
         userId: this.state.user.id,
-        title: this.state.translateOutputTitle,
-        text: this.state.translateOutputText
+        title: this.state.newNoteTitle,
+        text: this.state.newNoteText
       })
     }
     fetch(URL_NEW_NOTES, options)
@@ -93,8 +93,8 @@ class Home extends React.Component {
       },
       body: JSON.stringify({
         userId: this.state.user.id,
-        title: this.state.newNoteTitle,
-        text: this.state.newNoteText
+        title: this.state.translateOutputTitle,
+        text: this.state.translateOutputText
       })
     }
     fetch(URL_NEW_NOTES, options)
@@ -492,36 +492,36 @@ class Home extends React.Component {
                                   translateInputNote: null,
                                   translateInputLang: null
                                 })
-                                this.onSubmitNewNote()
+                                this.onSubmitTranslateNewNote()
                               }}
                             >
                               Create Note
                             </Button>
                           </div>
-                          <Alert
-                            show={this.state.alertNewTranslateNoteSuccess}
-                            variant="success"
-                          >
-                            <Alert.Heading>
-                              <div className="hm__form-alert">
-                                <p>Success!</p>
-                                <Button
-                                  variant="success"
-                                  onClick={() =>
-                                    this.setState({
-                                      alertNewTranslateNoteSuccess: false
-                                    })
-                                  }
-                                >
-                                  Close
-                                </Button>
-                              </div>
-                            </Alert.Heading>
-                            <p>The note was created succesfully</p>
-                          </Alert>
                         </div>
                       </div>
                     ) : null}
+                    <Alert
+                      show={this.state.alertNewTranslateNoteSuccess}
+                      variant="success"
+                    >
+                      <Alert.Heading>
+                        <div className="hm__form-alert">
+                          <p>Success!</p>
+                          <Button
+                            variant="success"
+                            onClick={() =>
+                              this.setState({
+                                alertNewTranslateNoteSuccess: false
+                              })
+                            }
+                          >
+                            Close
+                          </Button>
+                        </div>
+                      </Alert.Heading>
+                      <p>The note was created succesfully</p>
+                    </Alert>
                   </div>
                 ) : this.state.menuView === HM.NO_NOTES ? (
                   <div>{HM.NO_NOTES}</div>
