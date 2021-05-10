@@ -134,7 +134,6 @@ class Home extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          console.log(data)
           this.setState({ userNotes: data })
         } else this.setState({ menuView: HM.ERROR })
       })
@@ -192,7 +191,6 @@ class Home extends React.Component {
         'Content-Type': 'application/json'
       })
       .then((res) => {
-        console.log(res)
         this.setState({
           user: {
             id: this.state.user.id,
@@ -236,7 +234,6 @@ class Home extends React.Component {
         'Access-Control-Allow-Origin': '*'
       })
       .then((res) => {
-        console.log(res)
         this.setState({
           uploadOutputText: res.data.text,
           isUploadLoading: false
