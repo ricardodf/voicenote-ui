@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, Alert } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 
 import { LPMODAL } from './LPModalConsts'
@@ -14,7 +14,9 @@ class LPModal extends React.Component {
     this.state = {
       formName: '',
       formEmail: '',
-      formPassword: ''
+      formPassword: '',
+      alertMessage: '',
+      alertShow: false
     }
     this.backgroundStyle = {
       background: 'url(' + '/images/lpm_bgd.svg' + ')',
@@ -41,6 +43,8 @@ class LPModal extends React.Component {
         if (data.id) {
           sessionStorage.setItem('user', JSON.stringify(data))
           this.props.history.push('/home')
+        } else {
+          this.setState({ alertShow: true, alertMessage: data.errorReason })
         }
       })
   }
@@ -63,6 +67,8 @@ class LPModal extends React.Component {
         if (data.id) {
           sessionStorage.setItem('user', JSON.stringify(data))
           this.props.history.push('/home')
+        } else {
+          this.setState({ alertShow: true, alertMessage: data.errorReason })
         }
       })
   }
@@ -137,6 +143,20 @@ class LPModal extends React.Component {
                 />
               </Form.Group>
             </Form>
+            <Alert show={this.state.alertShow} variant="danger">
+              <Alert.Heading>
+                <div className="hm__form-alert">
+                  <p>Error!</p>
+                  <Button
+                    variant="danger"
+                    onClick={() => this.setState({ alertShow: false })}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Alert.Heading>
+              <p>{this.state.alertMessage}</p>
+            </Alert>
           </Modal.Body>
           <Modal.Footer className="lpm__header">
             <div style={this.backgroundStyle}>

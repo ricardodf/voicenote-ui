@@ -1,9 +1,11 @@
 /* eslint-disable indent */
 /* eslint-disable multiline-ternary */
 import React from 'react'
+import axios from 'axios'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Button, Navbar, Form, Alert, Dropdown } from 'react-bootstrap'
+import { Grid } from 'react-spinners-css'
 import {
   BsFillFolderFill,
   BsFileText,
@@ -18,7 +20,10 @@ import { HM, LANGUAGES } from './HomeConsts'
 import {
   URL_GET_USER_NOTES,
   URL_NEW_NOTES,
-  URL_TRANSLATE
+  URL_TRANSLATE,
+  URL_NEW_AUDIO,
+  URL_UPDATE_CNT,
+  URL_TRANSCRIPT
 } from '../constants/UsersAPI'
 
 class Home extends React.Component {
@@ -30,12 +35,17 @@ class Home extends React.Component {
       menuView: HM.ALL_NOTES,
       newNoteTitle: '',
       newNoteText: '',
+      uploadBtnDisabled: true,
+      uploadOutputTitle: 'New note from audio',
+      uploadOutputText: null,
       translateInputNote: null,
       translateInputLang: null,
       translateOutputTitle: null,
       translateOutputText: null,
       alertNewNoteSuccess: false,
-      alertNewTranslateNoteSuccess: false
+      alertNewTranscriptNoteSuccess: false,
+      alertNewTranslateNoteSuccess: false,
+      isUploadLoading: false
     }
   }
 
@@ -168,6 +178,95 @@ class Home extends React.Component {
       .then((res) => res.text())
       .then((data) => {
         this.setState({ translateOutputText: data })
+      })
+  }
+
+  updateAudioCnt () {
+    const newCnt = this.state.user.audios + 1
+    const data = {
+      id: this.state.user.id,
+      newCnt
+    }
+    axios
+      .put(URL_UPDATE_CNT, data, {
+        'Content-Type': 'application/json'
+      })
+      .then((res) => {
+        console.log(res)
+        this.setState({
+          user: {
+            id: this.state.user.id,
+            name: this.state.user.name,
+            audios: newCnt
+          },
+          isUploadLoading: true
+        })
+        sessionStorage.setItem('user', JSON.stringify(this.state.user))
+        this.handleFile()
+      })
+      .catch((err) => console.log(err))
+  }
+
+  handleFile () {
+    const input = document.getElementById('exampleFormControlFile1')
+    const formData = new FormData()
+    formData.append('file', input.files[0])
+    axios
+      .post(
+        URL_NEW_AUDIO + this.state.user.id + '/' + this.state.user.audios,
+        formData,
+        {
+          'Content-Type': 'multipart/form-data'
+        }
+      )
+      .then((response) => {
+        this.transcript()
+      })
+      .catch((err) => console.log(err))
+  }
+
+  transcript () {
+    const data = {
+      idUser: this.state.user.id,
+      idAudio: this.state.user.audios
+    }
+    axios
+      .post(URL_TRANSCRIPT, data, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+      .then((res) => {
+        console.log(res)
+        this.setState({
+          uploadOutputText: res.data.text,
+          isUploadLoading: false
+        })
+      })
+      .catch((err) => console.log(err))
+  }
+
+  onSubmitTranscriptNewNote () {
+    const options = {
+      crossDomain: true,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId: this.state.user.id,
+        title: this.state.uploadOutputTitle,
+        text: this.state.uploadOutputText
+      })
+    }
+    fetch(URL_NEW_NOTES, options)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          uploadOutputTitle: 'New note from audio',
+          uploadOutputText: null,
+          alertNewTranscriptNoteSuccess: true
+        })
+        this.getUserNotes(this.state.user.id)
       })
   }
 
@@ -320,6 +419,10 @@ class Home extends React.Component {
                             })
                             this.onSubmitNewNote()
                           }}
+                          disabled={
+                            this.state.newNoteTitle.length <= 0 ||
+                            this.state.newNoteText.length <= 0
+                          }
                         >
                           Create Note
                         </Button>
@@ -348,19 +451,106 @@ class Home extends React.Component {
                 ) : this.state.menuView === HM.IMPORT_AUDIO ? (
                   <div>
                     <div className="hm__menuView-title">{HM.IMPORT_AUDIO}</div>
-                    <div>
+                    <div className="hm__upload-audio">
+                      <div className="hm__upload-text">Upload an audio:</div>
                       <Form>
                         <Form.Group>
                           <Form.File
                             id="exampleFormControlFile1"
-                            label="Example file input"
+                            name="file"
                             onInput={(e) => {
-                              console.log(e)
+                              e.preventDefault()
+                              this.setState({ uploadBtnDisabled: false })
                             }}
                           />
                         </Form.Group>
                       </Form>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault()
+                          this.updateAudioCnt()
+                        }}
+                        disabled={this.state.uploadBtnDisabled}
+                      >
+                        UPLOAD
+                      </Button>
                     </div>
+                    {this.state.uploadOutputText ? (
+                      <div className="hm__new-note">
+                        <div className="hm__form">
+                          <Form>
+                            <Form.Group
+                              className="hm__form-item"
+                              controlId="exampleForm.ControlInput1"
+                            >
+                              <Form.Label>Title</Form.Label>
+                              <Form.Control
+                                type="text"
+                                placeholder="Title"
+                                value={this.state.uploadOutputTitle}
+                                onChange={(e) =>
+                                  this.setState({
+                                    uploadOutputTitle: e.target.value
+                                  })
+                                }
+                              />
+                            </Form.Group>
+                            <Form.Group
+                              className="hm__form-item"
+                              controlId="exampleForm.ControlTextarea1"
+                            >
+                              <Form.Label>Content</Form.Label>
+                              <Form.Control
+                                as="textarea"
+                                rows={6}
+                                value={this.state.uploadOutputText}
+                                onChange={(e) =>
+                                  this.setState({
+                                    uploadOutputText: e.target.value
+                                  })
+                                }
+                                disabled
+                              />
+                            </Form.Group>
+                          </Form>
+                          <div className="hm__form-btn">
+                            <Button
+                              variant="outline-success"
+                              onClick={(e) => {
+                                e.preventDefault()
+                                this.onSubmitTranscriptNewNote()
+                              }}
+                            >
+                              Create Note
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+                    {this.state.isUploadLoading ? (
+                      <Grid color="#5098d8" />
+                    ) : null}
+                    <Alert
+                      show={this.state.alertNewTranscriptNoteSuccess}
+                      variant="success"
+                    >
+                      <Alert.Heading>
+                        <div className="hm__form-alert">
+                          <p>Success!</p>
+                          <Button
+                            variant="success"
+                            onClick={() =>
+                              this.setState({
+                                alertNewTranscriptNoteSuccess: false
+                              })
+                            }
+                          >
+                            Close
+                          </Button>
+                        </div>
+                      </Alert.Heading>
+                      <p>The note was created succesfully</p>
+                    </Alert>
                   </div>
                 ) : this.state.menuView === HM.TRANSLATE ? (
                   <div className="hm__trans">

@@ -141,6 +141,20 @@
   justify-content: space-between;
 }
 
+/** IMPORT AUDIO **/
+.hm__upload-audio {
+  display: flex;
+  flex-direction: row;
+  padding: 2em;
+}
+
+.hm__upload-audio .hm__upload-text {
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  padding-right: 1em;
+}
+
 /** TRANSLATE **/
 .hm__right-menuView .hm__trans {
   display: flex;

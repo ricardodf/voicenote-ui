@@ -31,9 +31,3 @@
 .lpm__form .lpm__form-element {
   padding: 1em 0.5em;
 }
-
-.hm__form-alert {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}

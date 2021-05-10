@@ -6,13 +6,15 @@ import { string as rollupstr } from 'rollup-plugin-string'
 export default {
   input: 'src/index.js',
   external: [
+    'axios',
     'bootstrap',
     'prop-types',
     'react',
     'react-bootstrap',
     'react-dom',
     'react-icons',
-    'react-router-dom'
+    'react-router-dom',
+    'react-spinners-css'
   ],
   output: [
     {
